@@ -1,13 +1,12 @@
 # open a file
 import re
+import nltk
 from nltk.corpus import stopwords
-
-cachedStopWords = stopwords.words("english")
+from nltk.tokenize import word_tokenize
+nltk.download('punkt')
 file = open("user-tweets.txt", "r")
 # iterate over each line in file
 for line in file:
-    line = ' '.join([word for word in line.split()
-                     if word not in cachedStopWords])
     line = re.sub(r'@\w+', '', line)
     line = line.replace('\\n', '')
     line = re.sub(r'http\S+', '', line)
@@ -31,6 +30,16 @@ for line in file:
                                u"\ufe0f"  # dingbats
                                u"\u3030"
                                "]+", re.UNICODE)
+    # remove stop words from text
+    stop_words = set(stopwords.words('english'))
+    word_tokens = word_tokenize(line)
+    filtered_sentence = [w for w in word_tokens if not w in stop_words]
+    filtered_sentence = []
+    for w in word_tokens:
+        if w not in stop_words:
+            filtered_sentence.append(w)
+    # print the filtered sentence
+    line = ' '.join(filtered_sentence)
     # write text to new file
     with open('user-tweets-clean.txt', 'a') as f:
         f.write(emoji_pattern.sub(r'', line))
