@@ -1,0 +1,5 @@
+nltk==3.7
+snscrape @ git+https://github.com/JustAnotherArchivist/snscrape.git@46a603053cfbc0ce3c54d43d7e1ac2427fa82b4d
+regex==2022.9.13
+requests==2.28.1
+threadpoolctl==3.1.0
