@@ -1,0 +1,16 @@
+{% extends 'base.html'%} {% block head %}
+<title>Create wordcloud for your account</title>
+
+{% endblock %} {% block body%}
+<form action="/cloud" method="POST">
+  <input
+    class="form-control"
+    type="text"
+    name="user_name"
+    id="user_name"
+    placeholder="enter account name"
+    aria-label="enter account name"
+  />
+</form>
+<hr />
+{%endblock%}
