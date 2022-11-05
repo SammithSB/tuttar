@@ -1,6 +1,7 @@
 #!/bin/env python
 import os
-import snscrape
+import subprocess
+import snscrape.modules.twitter as sntwitter
 from datetime import date
 import re
 import nltk
@@ -14,7 +15,8 @@ nltk.download('punkt')
 user_name = input("Enter the Twitter handle of the user: ")
 user_tweets = "snscrape --max-results 2000 --format '{content!r}'" + \
     f" twitter-user '{user_name}' > user-tweets.txt"
-os.system(command=user_tweets)
+os.system("snscrape --max-results 10000 --format '{content!r}'" +
+          f" twitter-user '{user_name}' > user-tweets.txt")
 file = open("user-tweets.txt", "r")
 # create new file
 new_file = open("user-tweets-clean.txt", "w")
